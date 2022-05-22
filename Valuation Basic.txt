@@ -1,14 +1,15 @@
 //@version=5
-indicator("Valuation and EMA Combo", overlay=true)
+indicator("Valuation by PE Basic", overlay=true)
 //////////////// INPUT Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-PE_v1 = input.float(7 ,"PE Value Zone ")
+srcc = request.financial(syminfo.tickerid, 'EARNINGS_PER_SHARE', 'TTM')   //// In put The EMA ***** Must Add *******
+
+PE_v1 = input.float( 7 ,"PE Value Zone ")
 PE_v2 = input.float(12 ,"PE Value to Mid Zone" )
 PE_v3 = input.float(22 ,"PE Mid Zone" )
-PE_v4 = input.float(36,"PE Mid to Ex Zone")
-PE_v5 = input.float(54,"PE Ex Zone")
+PE_v4 = input.float(36 ,"PE Mid to Ex Zone")
+PE_v5 = input.float(54 ,"PE Ex Zone")
 
-srcc = request.financial(syminfo.tickerid, 'EARNINGS_PER_SHARE', 'TTM')   //// In put The EMA ***** Must Add *******
 //////////////// Calculation Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 PriceSHOW1 = srcc * PE_v1
 PriceSHOW2 = srcc * PE_v2
