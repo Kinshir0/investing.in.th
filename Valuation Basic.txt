@@ -1,0 +1,25 @@
+//@version=5
+indicator("Valuation and EMA Combo", overlay=true)
+//////////////// INPUT Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+PE_v1 = input.float(7 ,"PE Value Zone ")
+PE_v2 = input.float(12 ,"PE Value to Mid Zone" )
+PE_v3 = input.float(22 ,"PE Mid Zone" )
+PE_v4 = input.float(36,"PE Mid to Ex Zone")
+PE_v5 = input.float(54,"PE Ex Zone")
+
+srcc = request.financial(syminfo.tickerid, 'EARNINGS_PER_SHARE', 'TTM')   //// In put The EMA ***** Must Add *******
+//////////////// Calculation Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+PriceSHOW1 = srcc * PE_v1
+PriceSHOW2 = srcc * PE_v2
+PriceSHOW3 = srcc * PE_v3
+PriceSHOW4 = srcc * PE_v4
+PriceSHOW5 = srcc * PE_v5
+
+//////////////// Plot Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+plot(PriceSHOW1 ,title = "The Value Line " , color=color.new(color.green, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW2 ,title = "The V to M Line " , color=color.new(color.green, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW3 ,title = "The M Line " , color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW4 ,title = "The M to Ex Line" , color=color.new(#F8C471, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW5 ,title = "The Ex Line" , color=color.new(color.red, 0) ,linewidth=5, style= plot.style_stepline_diamond)
