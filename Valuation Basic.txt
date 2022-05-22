@@ -2,7 +2,7 @@
 indicator("Valuation by PE Basic", overlay=true)
 //////////////// INPUT Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-srcc = request.financial(syminfo.tickerid, 'EARNINGS_PER_SHARE', 'TTM')   //// In put The EMA ***** Must Add *******
+srcc = request.financial(syminfo.tickerid, 'EARNINGS_PER_SHARE', 'TTM')   //// In put The EPS ***** Must Add *******
 
 PE_v1 = input.float( 7 ,"PE Value Zone ")
 PE_v2 = input.float(12 ,"PE Value to Mid Zone" )
