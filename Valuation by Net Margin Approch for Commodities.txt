@@ -1,0 +1,51 @@
+//@version=5
+indicator("Valuation by Net Margin Approch for Commodities", overlay=true)
+//////////////// INPUT Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Sale = request.financial(syminfo.tickerid, 'TOTAL_REVENUE', 'FY')  
+SH   = request.financial(syminfo.tickerid, 'TOTAL_SHARES_OUTSTANDING', 'FY')  
+
+////////// [PE Calculation Side] ///////////////////////////////    
+Payout = input.float( 50 ,"Percentage of Earning Payout") 
+Dividend_you_need = input.float( 3.26 ,"Percentage of Dividend Yield at terminal ; for PE = Payout / Dividend Yield")
+
+////////// [Growth Calculator] ///////////////////////////////    
+The_Growth = input.float( 6 ,"Duration of Cagr Growth")  / 100
+The_Time = input.float( 5 ,"Duration of Time Growth")
+
+/////////////// [Net Margin Input] ///////////////////////////////    
+NPM_v1 = input.float( 2.44 ,"NPM at 2.xx") /100
+NPM_v2 = input.float( 3.54 ,"NPM at 3.xx" ) /100
+NPM_v3 = input.float( 5.26 ,"NPM at 5.xx" ) /100
+NPM_v4 = input.float( 6.78 ,"NPM at 6.xx") /100
+NPM_v5 = input.float( 8.16 ,"NPM at 8.xx") /100
+NPM_v6 = input.float( 10.52 ,"NPM at 10.xx") /100
+NPM_v7 = input.float( 12.56 ,"NPM at 12.xx") /100
+NPM_v8 = input.float( 15.83 ,"NPM at 15.xx") /100
+NPM_v9 = input.float( 20.89 ,"NPM at 2x.xx") /100
+
+//////////////// Calculation Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+srcc_NPM  = math.pow(1+The_Growth,The_Time)  * (Payout / Dividend_you_need) * Sale  / SH 
+
+
+PriceSHOW1_npm  = srcc_NPM * NPM_v1
+PriceSHOW2_npm  = srcc_NPM * NPM_v2
+PriceSHOW3_npm  = srcc_NPM * NPM_v3
+PriceSHOW4_npm  = srcc_NPM * NPM_v4
+PriceSHOW5_npm  = srcc_NPM * NPM_v5
+PriceSHOW6_npm  = srcc_NPM * NPM_v6
+PriceSHOW7_npm  = srcc_NPM * NPM_v7
+PriceSHOW8_npm  = srcc_NPM * NPM_v8
+PriceSHOW9_npm  = srcc_NPM * NPM_v9
+
+//////////////// Plot Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+plot(PriceSHOW1_npm  ,title = "NPM at 2.xx" , color=color.new(color.green, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW2_npm  ,title = "NPM at 3.xx" , color=color.new(color.green, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW3_npm  ,title = "NPM at 5.xx"  , color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW4_npm  ,title = "NPM at 6.xx"  , color=color.new(#F8C471, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW5_npm  ,title = "NPM at 8.xx"  , color=color.new(color.red, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW6_npm  ,title = "NPM at 10.xx", color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW7_npm  ,title = "NPM at 12.xx" , color=color.new(#F8C471, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW8_npm  ,title = "NPM at 15.xx" , color=color.new(color.red, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW9_npm  ,title = "NPM at 2x.xx", color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
