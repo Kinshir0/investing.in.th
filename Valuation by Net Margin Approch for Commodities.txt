@@ -6,8 +6,8 @@ Sale = request.financial(syminfo.tickerid, 'TOTAL_REVENUE', 'FY')
 SH   = request.financial(syminfo.tickerid, 'TOTAL_SHARES_OUTSTANDING', 'FY')  
 
 ////////// [PE Calculation Side] ///////////////////////////////    
-Payout = input.float( 50 ,"Percentage of Earning Payout") 
-Dividend_you_need = input.float( 3.26 ,"Percentage of Dividend Yield at terminal ; for PE = Payout / Dividend Yield")
+Payout = input.float( 40 ,"Percentage of Earning Payout") 
+Dividend_you_need = input.float( 3.56 ,"Percentage of Dividend Yield at terminal ; for PE = Payout / Dividend Yield")
 
 ////////// [Growth Calculator] ///////////////////////////////    
 The_Growth = input.float( 6 ,"Duration of Cagr Growth")  / 100
@@ -40,12 +40,12 @@ PriceSHOW9_npm  = srcc_NPM * NPM_v9
 
 //////////////// Plot Side\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-plot(PriceSHOW1_npm  ,title = "NPM at 2.xx" , color=color.new(color.green, 0) ,linewidth=5, style= plot.style_stepline_diamond)
-plot(PriceSHOW2_npm  ,title = "NPM at 3.xx" , color=color.new(color.green, 40) ,linewidth=3, style= plot.style_stepline_diamond)
-plot(PriceSHOW3_npm  ,title = "NPM at 5.xx"  , color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
-plot(PriceSHOW4_npm  ,title = "NPM at 6.xx"  , color=color.new(#F8C471, 40) ,linewidth=3, style= plot.style_stepline_diamond)
-plot(PriceSHOW5_npm  ,title = "NPM at 8.xx"  , color=color.new(color.red, 0) ,linewidth=5, style= plot.style_stepline_diamond)
-plot(PriceSHOW6_npm  ,title = "NPM at 10.xx", color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
-plot(PriceSHOW7_npm  ,title = "NPM at 12.xx" , color=color.new(#F8C471, 40) ,linewidth=3, style= plot.style_stepline_diamond)
-plot(PriceSHOW8_npm  ,title = "NPM at 15.xx" , color=color.new(color.red, 0) ,linewidth=5, style= plot.style_stepline_diamond)
-plot(PriceSHOW9_npm  ,title = "NPM at 2x.xx", color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW1_npm  ,title = "NPM at 2.xx" , color=color.new(color.green, 0) ,linewidth=5, style= plot.style_line)
+plot(PriceSHOW2_npm  ,title = "NPM at 3.xx" , color=color.new(color.green, 40) ,linewidth=3, style= plot.style_line)
+plot(PriceSHOW3_npm  ,title = "NPM at 5.xx"  , color=color.new(#2BCEE9, 0) ,linewidth=5, style= plot.style_stepline_diamond)
+plot(PriceSHOW4_npm  ,title = "NPM at 6.xx"  , color=color.new(#2BCEE9, 40) ,linewidth=3, style= plot.style_stepline_diamond)
+plot(PriceSHOW5_npm  ,title = "NPM at 8.xx"  , color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline)
+plot(PriceSHOW6_npm  ,title = "NPM at 10.xx", color=color.new(#F8C471, 0) ,linewidth=5, style= plot.style_stepline)
+plot(PriceSHOW7_npm  ,title = "NPM at 12.xx" , color=color.new(color.red, 40) ,linewidth=5, style= plot.style_circles)
+plot(PriceSHOW8_npm  ,title = "NPM at 15.xx" , color=color.new(color.red, 20) ,linewidth=3, style= plot.style_circles)
+plot(PriceSHOW9_npm  ,title = "NPM at 2x.xx", color=color.new(color.red, 0) ,linewidth=5, style= plot.style_circles)
